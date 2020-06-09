@@ -1,0 +1,35 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:latest
+    network_mode: bridge
+    container_name: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=employee
+    #restart: unless-stopped
+  # APP*****************************************
+  springbootapp:
+    build: .
+    network_mode: bridge
+    container_name: employeecrud_springbootappz
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/employee
+    expose:
+      - 8020
+    ports:
+      - 8020:8020
+    #restart: unless-stopped
+    depends_on:
+      - postgres
+    links:
+      - postgres
+volumes:
+  postgres-data:

@@ -1,0 +1,41 @@
+management:
+  security:
+    enabled: true
+
+server:
+  port: 8020
+
+spring:
+  resources:
+    chain:
+      enabled: true
+
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate :
+        jdbc:
+          lob:
+            non_contextual_creation: true
+          batch_size: 4
+        order_inserts: true
+        generate_statistics: true
+
+#  datasource:
+#    platform: postgres
+#    url: jdbc:postgresql://employee.cgm0xtycpiik.ap-south-1.rds.amazonaws.com/employee
+#    username: postgres
+#    password: 123sriharshith
+
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/employee
+    username: postgres
+    password: root
+
+
+

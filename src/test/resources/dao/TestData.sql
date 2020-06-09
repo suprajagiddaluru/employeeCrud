@@ -1,0 +1,1 @@
+INSERT INTO employee VALUES (17,'Brussels','h'',111,222 );
